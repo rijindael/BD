@@ -488,10 +488,6 @@ static enum ssl_hs_wait_t do_start_connect(SSL_HANDSHAKE *hs) {
   if (!RAND_bytes(ssl->s3->client_random, sizeof(ssl->s3->client_random))) {
     return ssl_hs_error;
   }
-  if (hs->selected_ech_config &&
-      !RAND_bytes(hs->inner_client_random, sizeof(hs->inner_client_random))) {
-    return ssl_hs_error;
-  }
 
   // Never send a session ID in QUIC. QUIC uses TLS 1.3 at a minimum and
   // disables TLS 1.3 middlebox compatibility mode.
