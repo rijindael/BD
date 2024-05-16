@@ -1001,9 +1001,6 @@ static enum ssl_hs_wait_t do_send_server_hello(SSL_HANDSHAKE *hs) {
   ssl->s3->server_random[1] = now.tv_sec >> 16;
   ssl->s3->server_random[2] = now.tv_sec >> 8;
   ssl->s3->server_random[3] = now.tv_sec;
-  if (!RAND_bytes(ssl->s3->server_random + 4, SSL3_RANDOM_SIZE - 4)) {
-    return ssl_hs_error;
-  }
 
   // Implement the TLS 1.3 anti-downgrade feature.
   if (ssl_supports_version(hs, TLS1_3_VERSION)) {
