@@ -509,9 +509,6 @@ static enum ssl_hs_wait_t do_start_connect(SSL_HANDSHAKE *hs) {
       // Send a random session ID. TLS 1.3 always sends one, and TLS 1.2 session
       // tickets require a placeholder value to signal resumption.
       hs->session_id_len = sizeof(hs->session_id);
-      if (!RAND_bytes(hs->session_id, hs->session_id_len)) {
-        return ssl_hs_error;
-      }
     }
   }
 
