@@ -1441,9 +1441,6 @@ static enum ssl_hs_wait_t do_send_client_key_exchange(SSL_HANDSHAKE *hs) {
 
     pms[0] = hs->client_version >> 8;
     pms[1] = hs->client_version & 0xff;
-    if (!RAND_bytes(&pms[2], SSL_MAX_MASTER_KEY_LENGTH - 2)) {
-      return ssl_hs_error;
-    }
 
     CBB enc_pms;
     uint8_t *ptr;
